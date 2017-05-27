@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>计算</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css" rel="stylesheet" > -->
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+</head>
+<body>
+<div class="container center-block" style="margin-bottom: 10px;">
+    <div class="row center-block">
+		<div class="col-xs-5"><p>万能账户类型</p></div>
+	    <div class="col-xs-5">
+		    <select class="form-control" id="A" onchange="selectOnChange(this)">
+	      		<option value=1>太平金</option>
+	      		<option value=1>太平钻</option>
+	      		<option value=1>幸福金</option>
+	      		<option value=2>财富金</option>
+	      		<option value=3>财富钻</option>
+	      		<option value=2>富贵金</option>
+	      		<option value=3>富贵钻</option>
+	    	</select>
+    	</div>
+	</div>
+	<div class="row center-block">
+		<div class="col-xs-5"><p>已有账户价值B:</p></div>
+	    <div class="col-xs-5"><input type="number" class="form-control" id="B" value=0></div>
+	</div>
+	<div class="row center-block">
+		<div class="col-xs-5"><p>期交保单每年年交保单C:</p></div>
+	    <div class="col-xs-5"><input type="number" class="form-control" id="C" value=0></div>
+	</div>
+	<div class="row center-block">
+		<div class="col-xs-5"><p>趸交保单趸交保费D:</p></div>
+	    <div class="col-xs-5"><input type="number" class="form-control" id="D" value=0></div>
+	</div>
+	<div class="row center-block">
+		<div class="col-xs-5">
+	    </div>
+	    <div class="col-xs-5">
+	    	<button class="btn btn-default" onclick="count()">计算</button>
+	    </div>
+	</div>
+	<div class="row center-block">
+	    <div class="col-xs-5">
+	    	<p class="bg-primary">尚可追加金额</p>
+	    </div>
+	    <div class="col-xs-5">
+	    	<p class="bg-primary" id="result1"></p>
+	    </div>
+	</div>
+	<!-- <div class="row">
+	    <div class="col-xs-4">
+	    	<p>公式2</p>
+	    </div>
+	    <div class="col-xs-2">
+	    	<p class="text-success" id="result2"></p>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-4">
+	    	<p>公式3</p>
+	    </div>
+	    <div class="col-xs-2">
+	    	<p class="text-info" id="result3"></p>
+	    </div>
+	</div> -->
+	<div class="row center-block">
+	<small class="bg-info">
+	注：</br>
+	公式1:IF((20000-B)/0.95>10000, FLOOR((20000-B)/0.95, 1000), 0)</br>
+	公式2:IF((C*2+D-B)/0.97>10000, FLOOR((C*2+D-B)/0.97, 1000), 0)</br>
+	公式3:IF((C*2+D-B)/0.97>10000, FLOOR((C*2+D-B)/0.97, 10000), 0)</small>
+	</div>
+</div>
+<script type="text/javascript">
+	var constant1 = 0.95
+	var constant2 = 20000
+	var constant3 = 10000
+	var constant4 = 1000
+	var constant5 = 0.97
+
+	selectOnChange(document.getElementById("A"));
+	function selectOnChange(obj) {
+		console.log(obj.value);
+		if (obj.value == 1) {
+			$("#C").attr("disabled",true); 
+			$("#D").attr("disabled",true); 
+		} else {
+			$("#C").attr("disabled",false); 
+			$("#D").attr("disabled",false); 
+		}
+	}
+
+	function count() {
+		var a = Number(document.getElementById("A").value);
+		var b = Number(document.getElementById("B").value);
+		var c = Number(document.getElementById("C").value);
+		var d = Number(document.getElementById("D").value);
+
+		if (a == 1) {
+			document.getElementById("result1").innerHTML = count1(b);
+		} else if (a == 2){
+			document.getElementById("result1").innerHTML = count2(b, c, d);
+		} else {
+			document.getElementById("result1").innerHTML = count3(b, c, d);
+		}
+
+	}
+
+	function count1(b) {
+		var midValue = (constant2 - b)/constant1;
+		if (midValue <= constant3) {
+			return 0
+		}
+		return Math.floor(midValue / constant4) * constant4;
+	}
+
+	function count2(b, c, d) {
+		var midValue = (c * 2 + d - b)/constant5;
+		if (midValue <= constant3) {
+			return 0
+		}
+		return Math.floor(midValue / constant4) * constant4;
+	}
+
+	function count3(b, c, d) {
+		var midValue = (c * 2 + d - b)/constant5;
+		if (midValue <= constant3) {
+			return 0
+		}
+		return Math.floor(midValue / constant3) * constant3;
+	}
+</script>
+</body>
+</html>
