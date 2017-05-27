@@ -55,22 +55,7 @@
 	    	<p class="bg-primary" id="result1"></p>
 	    </div>
 	</div>
-	<!-- <div class="row">
-	    <div class="col-xs-4">
-	    	<p>公式2</p>
-	    </div>
-	    <div class="col-xs-2">
-	    	<p class="text-success" id="result2"></p>
-	    </div>
-	</div>
-	<div class="row">
-	    <div class="col-xs-4">
-	    	<p>公式3</p>
-	    </div>
-	    <div class="col-xs-2">
-	    	<p class="text-info" id="result3"></p>
-	    </div>
-	</div> -->
+	
 	<div class="row center-block">
 	<small class="bg-info">
 	注：</br>
@@ -92,6 +77,8 @@
 		if (obj.value == 1) {
 			$("#C").attr("disabled",true); 
 			$("#D").attr("disabled",true); 
+			$("#C").val(0); 
+			$("#D").val(0); 
 		} else {
 			$("#C").attr("disabled",false); 
 			$("#D").attr("disabled",false); 
