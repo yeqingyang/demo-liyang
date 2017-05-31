@@ -19,8 +19,20 @@
             }
 
             .row{
-                margin-top: 4px;
-  				margin-bottom: 4px;
+  				border-top: 1px;
+  				border-bottom: 1px;
+  				padding-left: 1px;
+  				padding-right: 1px;
+            }
+
+            .no-left{
+            	padding-left: 1px;
+            	padding-right: 1px;
+            }
+
+            .bottom-line{
+            	border-bottom-style: solid;
+            	border-bottom-color: #F0F0F0;
             }
           
             /* centered columns styles */
@@ -39,9 +51,9 @@
               <h3 class="panel-title text-center">万能账户追加金额计算器</h3>
             </div>
             <div class="panel-body">
-		              <div class="row center-block">
-				<div class="col-xs-7"><p>万能账户类型</p></div>
-			    <div class="col-xs-5">
+		        <div class="row center-block bottom-line">
+				<div class="col-xs-6"><p>万能账户类型</p></div>
+			    <div class="col-xs-6">
 				    <select class="form-control" id="A" onchange="selectOnChange(this)">
 			      		<option value=1>太平金</option>
 			      		<option value=2>太平钻</option>
@@ -53,39 +65,38 @@
 			    	</select>
 		    	</div>
 			</div>
-			<HR style="border:1 dashed #987cb9" width="100%" color=#987cb9 SIZE=1>
-			<div class="row center-block divider">
-				<div class="col-xs-7"><p>万能账户已有账户价值</p></div>
-			    <div class="col-xs-3"><input type="number" class="form-control" id="B" value=0></div>
-			    <div class="col-xs-2"><p>元</p></div>
+			<div class="row center-block bottom-line">
+				<div class="col-xs-6"><p>万能账户已有账户价值</p></div>
+			    <div class="col-xs-5"><input type="number" class="form-control" id="B" value=0></div>
+			    <div class="col-xs-1 no-left"><p>元</p></div>
 			</div>
-            <HR style="border:1 dashed #987cb9" width="100%" color=#987cb9 SIZE=1>
-			<div class="row center-block">
-				<div class="col-xs-7"><p>关联产品中期交产品每年年交保费</p></div>
-			    <div class="col-xs-3"><input type="number" class="form-control" id="C" value=0></div>
-			    <div class="col-xs-2"><p>元</p></div>
+			<div class="row center-block bottom-line">
+				<div class="col-xs-6"><p>关联产品中期交产品每年年交保费</p></div>
+			    <div class="col-xs-5"><input type="number" class="form-control" id="C" value=0></div>
+			    <div class="col-xs-1 no-left"><p>元</p></div>
 			</div>
-			<HR style="border:1 dashed #987cb9" width="100%" color=#987cb9 SIZE=1>
 			<div class="row center-block">
-				<div class="col-xs-7"><p>关联产品中趸交产品趸交保费</p></div>
-			    <div class="col-xs-3"><input type="number" class="form-control" id="D" value=0></div>
-			    <div class="col-xs-2"><p>元</p></div>
+				<div class="col-xs-6"><p>关联产品中趸交产品趸交保费</p></div>
+			    <div class="col-xs-5"><input type="number" class="form-control" id="D" value=0></div>
+			    <div class="col-xs-1 no-left"><p>元</p></div>
 			</div>
 			<div class="row center-block">
 			    <div class="col-xs-12">
 			    	<button type="button" class="btn btn-info btn-block" onclick="count()">计算</button>
 			    </div>
 			</div>
+			<div class="row center-block">
+			</br>
+			</div>
 			<div class="row center-block" >
-			    <div class="col-xs-7">
+			    <div class="col-xs-6">
 			    	<p>万能账户尚可追加的金额</p>
 			    </div>
-			    <div class="col-xs-3 inner col-sm-offset-2">
+			    <div class="col-xs-5 inner col-sm-offset-2">
 			    	<p class="bg-success" id="result1" ></p>
 			    </div>
-			    <div class="col-xs-2"><p>元</p></div>
+			    <div class="col-xs-1 no-left"><p>元</p></div>
 			</div>
-			<HR style="border:1 dashed #987cb9" width="100%" color=#987cb9 SIZE=1>
 			
 			<div class="row center-block">
 				<div class="col-xs-12">
